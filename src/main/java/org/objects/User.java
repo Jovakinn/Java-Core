@@ -91,11 +91,7 @@ public class User implements humanMath {
     @Override
     public double calcMassIndex(double height, double mass) {
         double index;
-        User user = new User();
-        user.setHeight(height);
-        user.setMass(mass);
-
-        index = user.getMass() / (user.getHeight()*user.getHeight());
+        index = (mass / (height*height))*10000;
 
         return index;
     }
