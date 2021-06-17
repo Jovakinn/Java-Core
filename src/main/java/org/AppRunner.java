@@ -3,7 +3,8 @@ package org;
 import org.Data.Human.Gender;
 import org.objects.User;
 import org.utils.UserDataRepresent;
-import java.io.IOException;
+
+import java.io.*;
 import java.util.Arrays;
 import java.util.logging.Logger;
 
@@ -15,25 +16,45 @@ public class AppRunner {
         }
     }
 
-    static void printArray(int[] arr){
+    static void printArray(int[] arr) {
         int sizeOfArray = arr.length;
-        for (int i = 0; i < sizeOfArray; i++){
+        for (int i = 0; i < sizeOfArray; i++) {
             System.out.print(arr[i] + " ");
         }
     }
 
     static int[] bubbleSort(int[] arr) {
         int sizeOfArr = arr.length;
-        for (int i = 0; i < sizeOfArr - 1; i++){
-            for (int j = 0; j < sizeOfArr - i - 1; j++){
-                if(arr[j] > arr[j+1]){
+        for (int i = 0; i < sizeOfArr - 1; i++) {
+            for (int j = 0; j < sizeOfArr - i - 1; j++) {
+                if (arr[j] > arr[j + 1]) {
                     int temp = arr[j];
-                    arr[j] = arr[j+1];
-                    arr[j+1] = temp;
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
                 }
             }
         }
         return arr;
+    }
+
+    // binary search
+    public static int binarySearch(int arr[], int minimum, int maximum, int valueToFind) {
+        if (maximum >= 1) {
+            int midValue = minimum + (maximum - 1) / 2;
+
+            if (arr[midValue] == valueToFind) {
+                return midValue;
+            }
+
+            if (arr[midValue] > valueToFind) {
+                return binarySearch(arr, minimum, maximum - 1, valueToFind);
+            }
+
+            if (arr[midValue] < valueToFind) {
+                return binarySearch(arr, minimum + 1, maximum, valueToFind);
+            }
+        }
+        return -1;
     }
 
     public static final Logger LOGGER = Logger.getLogger(AppRunner.class.getName());
@@ -53,15 +74,56 @@ public class AppRunner {
         // Date representations
         UserDataRepresent.representCurrentUserTime();
 
-        int mat[][] = { { 1, 2, 3, 4 },
-                { 5, 6, 7, 8 },
-                { 9, 10, 11, 12 } };
+        int mat[][] = {{1, 2, 3, 4},
+                {5, 6, 7, 8},
+                {9, 10, 11, 12}};
 
         print2D(mat);
 
         // Bubble sort implementation
-        int array[] = {100 ,64, 34, 25, 12, 22, 89, 3};
+        int array[] = {100, 64, 34, 25, 12, 22, 89, 3};
         printArray(bubbleSort(array));
 
+        int n = 1;
+        while (++n < 5) {
+            for (int i = 0; i < n; i++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+
+        for (int i = 0, k = 1; i < 5; i++, k += 2) {
+            for (int j = 0; j < 5 - k / 2; j++) {
+                System.out.print(" ");
+            }
+            for (int j = 0; j < k; j++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < i; j++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+
+        String s1 = "abc";
+        String s2 = new String("abc").intern();
+        System.out.println(s1 == s2);
+
+        // test binary search
+
+        int[] testArray = {2, 3, 5, 89, 210, 720};
+        int sizeOfTestArray = testArray.length;
+        int numberToFind = 89;
+        int resultOfBinarySearch = binarySearch(testArray, 0,
+                sizeOfTestArray - 1, numberToFind);
+        if (resultOfBinarySearch == -1) {
+            LOGGER.severe("There is no such element");
+        } else {
+            LOGGER.info("Value found on index: " + resultOfBinarySearch);
+        }
     }
 }
