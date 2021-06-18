@@ -5,10 +5,11 @@ import org.objects.User;
 import org.utils.UserDataRepresent;
 
 import java.io.*;
+import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.logging.Logger;
 
-public class AppRunner {
+public abstract class AppRunner implements Serializable, Cloneable {
 
     static void print2D(int[][] matrix) {
         for (int[] row : matrix) {
@@ -59,7 +60,8 @@ public class AppRunner {
 
     public static final Logger LOGGER = Logger.getLogger(AppRunner.class.getName());
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, NullPointerException,
+            ClassNotFoundException {
         // User Nastya
         User userNastya = new User("Nastya", "Borodai",
                 17, 11.0, Gender.FEMALE,
@@ -125,5 +127,20 @@ public class AppRunner {
         } else {
             LOGGER.info("Value found on index: " + resultOfBinarySearch);
         }
+
+
+        // get Class metadata
+        Class<AppRunner> appRunnerClass = AppRunner.class;
+
+        LOGGER.info("Name of the class is: " + appRunnerClass.getName());
+        LOGGER.info("Name of the super class is: " + appRunnerClass.getSuperclass().getName());
+
+        Class[] appRunnerInterfaceList = appRunnerClass.getInterfaces();
+        for (Class appRunnerInter: appRunnerInterfaceList) {
+            LOGGER.info(appRunnerInter.getName());
+        }
+
+        Integer appRunnerModifiers = appRunnerClass.getModifiers();
+        LOGGER.info("Modifiers of the class are: " + Modifier.toString(appRunnerModifiers));
     }
 }
