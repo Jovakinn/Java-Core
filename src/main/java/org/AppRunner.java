@@ -9,7 +9,7 @@ import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.logging.Logger;
 
-public abstract class AppRunner implements Serializable, Cloneable {
+public abstract class AppRunner implements Serializable {
 
     static void print2D(int[][] matrix) {
         for (int[] row : matrix) {
@@ -24,6 +24,11 @@ public abstract class AppRunner implements Serializable, Cloneable {
         }
     }
 
+    /**
+     *
+     * @param arr
+     * @return this must return a sorted array of integers using bubble sort
+     */
     static int[] bubbleSort(int[] arr) {
         int sizeOfArr = arr.length;
         for (int i = 0; i < sizeOfArr - 1; i++) {
@@ -38,7 +43,14 @@ public abstract class AppRunner implements Serializable, Cloneable {
         return arr;
     }
 
-    // binary search
+    /**
+     *
+     * @param arr representing array of integers
+     * @param minimum minimum value of integers
+     * @param maximum maximum value of integers
+     * @param valueToFind value that has to be searched
+     * @return have to return searching integer
+     */
     public static int binarySearch(int arr[], int minimum, int maximum, int valueToFind) {
         if (maximum >= 1) {
             int midValue = minimum + (maximum - 1) / 2;
@@ -60,8 +72,7 @@ public abstract class AppRunner implements Serializable, Cloneable {
 
     public static final Logger LOGGER = Logger.getLogger(AppRunner.class.getName());
 
-    public static void main(String[] args) throws IOException, NullPointerException,
-            ClassNotFoundException {
+    public static void main(String[] args) throws NullPointerException {
         // User Nastya
         User userNastya = new User("Nastya", "Borodai",
                 17, 11.0, Gender.FEMALE,
