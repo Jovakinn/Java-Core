@@ -2,11 +2,13 @@ package org;
 
 import org.Data.Human.Gender;
 import org.objects.User;
+import org.utils.DataKey;
 import org.utils.UserDataRepresent;
 
 import java.io.*;
 import java.lang.reflect.Modifier;
 import java.util.Arrays;
+import java.util.Map;
 import java.util.logging.Logger;
 
 public class AppRunner implements Serializable {
@@ -71,6 +73,18 @@ public class AppRunner implements Serializable {
     public static final Logger LOGGER = Logger.getLogger(AppRunner.class.getName());
 
     public static void main(String[] args) throws NullPointerException {
+        //implementing equals() and hashCode() ---------------------------------
+        Map<DataKey, Integer> dataKeyIntegerMap = DataKey.getAllData();
+        DataKey dataKey = new DataKey();
+
+        dataKey.setId(1);
+        dataKey.setName("Silverman");
+
+        LOGGER.info("Data key's hashcode is: " + dataKey.hashCode());
+        Integer value = dataKeyIntegerMap.get(dataKey);
+        LOGGER.info(String.valueOf(value));
+        //-----------------------------------------------------------------------
+
         //User Max
         User userMax = new User("Max", "Khodakov",
                 17, 11.0, Gender.MAlE,
