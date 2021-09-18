@@ -9,7 +9,7 @@ import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.logging.Logger;
 
-public abstract class AppRunner implements Serializable {
+public class AppRunner implements Serializable {
 
     static void print2D(int[][] matrix) {
         for (int[] row : matrix) {
@@ -18,15 +18,13 @@ public abstract class AppRunner implements Serializable {
     }
 
     static void printArray(int[] arr) {
-        int sizeOfArray = arr.length;
-        for (int i = 0; i < sizeOfArray; i++) {
-            System.out.print(arr[i] + " ");
+        for (int j : arr) {
+            System.out.print(j + " ");
         }
     }
 
     /**
      *
-     * @param arr
      * @return this must return a sorted array of integers using bubble sort
      */
     static int[] bubbleSort(int[] arr) {
@@ -51,7 +49,7 @@ public abstract class AppRunner implements Serializable {
      * @param valueToFind value that has to be searched
      * @return have to return searching integer
      */
-    public static int binarySearch(int arr[], int minimum, int maximum, int valueToFind) {
+    public static int binarySearch(int[] arr, int minimum, int maximum, int valueToFind) {
         if (maximum >= 1) {
             int midValue = minimum + (maximum - 1) / 2;
 
@@ -73,11 +71,6 @@ public abstract class AppRunner implements Serializable {
     public static final Logger LOGGER = Logger.getLogger(AppRunner.class.getName());
 
     public static void main(String[] args) throws NullPointerException {
-        // User Nastya
-        User userNastya = new User("Nastya", "Borodai",
-                17, 11.0, Gender.FEMALE,
-                170.0, 62.0);
-        UserDataRepresent.representDataset(userNastya);
         //User Max
         User userMax = new User("Max", "Khodakov",
                 17, 11.0, Gender.MAlE,
@@ -87,14 +80,14 @@ public abstract class AppRunner implements Serializable {
         // Date representations
         UserDataRepresent.representCurrentUserTime();
 
-        int mat[][] = {{1, 2, 3, 4},
+        int[][] mat = {{1, 2, 3, 4},
                 {5, 6, 7, 8},
                 {9, 10, 11, 12}};
 
         print2D(mat);
 
         // Bubble sort implementation
-        int array[] = {100, 64, 34, 25, 12, 22, 89, 3};
+        int[] array = {100, 64, 34, 25, 12, 22, 89, 3};
         printArray(bubbleSort(array));
 
         int n = 1;
@@ -122,10 +115,6 @@ public abstract class AppRunner implements Serializable {
             System.out.println();
         }
 
-        String s1 = "abc";
-        String s2 = new String("abc").intern();
-        System.out.println(s1 == s2);
-
         // test binary search
 
         int[] testArray = {2, 3, 5, 89, 210, 720};
@@ -146,12 +135,7 @@ public abstract class AppRunner implements Serializable {
         LOGGER.info("Name of the class is: " + appRunnerClass.getName());
         LOGGER.info("Name of the super class is: " + appRunnerClass.getSuperclass().getName());
 
-        Class[] appRunnerInterfaceList = appRunnerClass.getInterfaces();
-        for (Class appRunnerInter: appRunnerInterfaceList) {
-            LOGGER.info(appRunnerInter.getName());
-        }
-
-        Integer appRunnerModifiers = appRunnerClass.getModifiers();
+        int appRunnerModifiers = appRunnerClass.getModifiers();
         LOGGER.info("Modifiers of the class are: " + Modifier.toString(appRunnerModifiers));
     }
 }
