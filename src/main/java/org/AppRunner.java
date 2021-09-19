@@ -72,7 +72,15 @@ public class AppRunner implements Serializable {
 
     public static final Logger LOGGER = Logger.getLogger(AppRunner.class.getName());
 
-    public static void main(String[] args) throws NullPointerException {
+    public static void main(String[] args) throws NullPointerException, IOException {
+        // Exceptions in Java
+
+        File file = new File("testFile.txt");
+        try (PrintWriter printWriter = new PrintWriter(new FileOutputStream(file))) {
+            printWriter.println("CS is the best thing that had ever happened in my life :)");
+        }
+
+
         //implementing equals() and hashCode() ---------------------------------
         Map<DataKey, Integer> dataKeyIntegerMap = DataKey.getAllData();
         DataKey dataKey = new DataKey();
