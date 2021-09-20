@@ -1,6 +1,6 @@
 package org.objects;
 
-public class Square extends Shape {
+public non-sealed class Square extends Shape {
     private Double side;
 
     public Double getSide() {

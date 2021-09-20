@@ -2,7 +2,7 @@ package org.objects;
 
 import java.util.logging.Logger;
 
-abstract public class Shape {
+abstract sealed public class Shape permits Square {
     public static final Logger LOGGER = Logger.getLogger(Shape.class.getName());
 
     abstract Double perimeter();
