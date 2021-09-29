@@ -1,6 +1,6 @@
 package org.generics.service.classes;
 
-public class Info <T>{
+public class Info <T extends Number>{
     private T value;
 
     public Info(T value) {
