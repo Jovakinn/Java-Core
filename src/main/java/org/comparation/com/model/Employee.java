@@ -15,6 +15,9 @@ public class Employee implements Comparable<Employee> {
         this.salary = salary;
     }
 
+    public Employee() {
+    }
+
     @Override
     public int hashCode() {
         return super.hashCode();
