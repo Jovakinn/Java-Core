@@ -1,5 +1,5 @@
 package org.collection.com.model;
 
-public enum SexOfStudent {
+public enum Sex {
     MALE, FEMALE
 }

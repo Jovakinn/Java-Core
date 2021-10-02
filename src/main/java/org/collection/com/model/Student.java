@@ -2,12 +2,12 @@ package org.collection.com.model;
 
 public class Student {
     private String name;
-    private SexOfStudent sex;
+    private Sex sex;
     private Integer age;
     private Integer yearOfStudy;
     private Double averageScore;
 
-    public Student(String name, SexOfStudent sex, Integer age, Integer yearOfStudy, Double averageScore) {
+    public Student(String name, Sex sex, Integer age, Integer yearOfStudy, Double averageScore) {
         this.name = name;
         this.sex = sex;
         this.age = age;
@@ -49,11 +49,11 @@ public class Student {
         this.name = name;
     }
 
-    public SexOfStudent getSex() {
+    public Sex getSex() {
         return sex;
     }
 
-    public void setSex(SexOfStudent sex) {
+    public void setSex(Sex sex) {
         this.sex = sex;
     }
 
