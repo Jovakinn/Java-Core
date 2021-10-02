@@ -1,4 +1,4 @@
-package org.collection.com.linked.model;
+package org.collection.com.linked.linkedmodel;
 
 import org.collection.com.model.Sex;
 
