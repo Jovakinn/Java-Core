@@ -1,6 +1,6 @@
 package org.collection.BinarySearch;
 
-import org.collection.linked.linkedmodel.Employee;
+import org.collection.model.Employee;
 import org.collection.model.Sex;
 
 import java.util.*;
