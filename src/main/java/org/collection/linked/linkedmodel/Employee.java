@@ -1,6 +1,6 @@
-package org.collection.com.linked.linkedmodel;
+package org.collection.linked.linkedmodel;
 
-import org.collection.com.model.Sex;
+import org.collection.model.Sex;
 import org.jetbrains.annotations.NotNull;
 
 public class Employee implements Comparable<Employee> {

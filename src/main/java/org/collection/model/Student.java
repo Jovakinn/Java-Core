@@ -1,4 +1,4 @@
-package org.collection.com.model;
+package org.collection.model;
 
 public class Student {
     private String name;

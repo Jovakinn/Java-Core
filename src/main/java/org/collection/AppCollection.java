@@ -1,7 +1,7 @@
-package org.collection.com;
+package org.collection;
 
-import org.collection.com.model.Sex;
-import org.collection.com.model.Student;
+import org.collection.model.Sex;
+import org.collection.model.Student;
 
 import java.util.ArrayList;
 import java.util.List;

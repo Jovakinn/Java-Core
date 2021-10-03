@@ -1,4 +1,4 @@
-package org.collection.com.service;
+package org.collection.service;
 
 import java.util.LinkedList;
 import java.util.List;
