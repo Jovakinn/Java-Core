@@ -1,15 +1,18 @@
 package org.collection.com.linked.linkedmodel;
 
 import org.collection.com.model.Sex;
+import org.jetbrains.annotations.NotNull;
 
-public class Employee {
+public class Employee implements Comparable<Employee> {
+    private Integer id;
     private String firstName;
     private String lastName;
     private Integer age;
     private Sex sex;
     private Double salary;
 
-    public Employee(String firstName, String lastName, Integer age, Sex sex, Double salary) {
+    public Employee(Integer id, String firstName, String lastName, Integer age, Sex sex, Double salary) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
@@ -17,7 +20,16 @@ public class Employee {
         this.salary = salary;
     }
 
-    public Employee() {
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                ", sex=" + sex +
+                ", salary=" + salary +
+                '}';
     }
 
     @Override
@@ -30,20 +42,12 @@ public class Employee {
         return super.equals(obj);
     }
 
-    @Override
-    protected Object clone() throws CloneNotSupportedException {
-        return super.clone();
+    public Integer getId() {
+        return id;
     }
 
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", age=" + age +
-                ", sex=" + sex +
-                ", salary=" + salary +
-                '}';
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -84,5 +88,10 @@ public class Employee {
 
     public void setSalary(Double salary) {
         this.salary = salary;
+    }
+
+    @Override
+    public int compareTo(@NotNull Employee o) {
+        return this.getId().compareTo(o.getId());
     }
 }
