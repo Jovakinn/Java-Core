@@ -21,7 +21,8 @@ public class HashMapExample {
         averageStudentGradeValueMap.put(studentDima, studentDima.getAverageScore());
         logger.info(String.valueOf(averageStudentGradeValueMap));
 
-        Student studentToCheckInMap = new Student("Max", Sex.MALE, 17, 1, 60.0);
-        logger.info(String.valueOf(averageStudentGradeValueMap.containsKey(studentToCheckInMap)));
+        for (Map.Entry<Student, Double> entry: averageStudentGradeValueMap.entrySet()) {
+            logger.info(entry.getKey() + ":" + entry.getValue());
+        }
     }
 }
