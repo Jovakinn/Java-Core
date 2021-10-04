@@ -1,5 +1,7 @@
 package org.collection.model;
 
+import java.util.Objects;
+
 public class Student {
     private String name;
     private Sex sex;
@@ -16,13 +18,16 @@ public class Student {
     }
 
     @Override
-    public int hashCode() {
-        return super.hashCode();
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Student)) return false;
+        Student student = (Student) o;
+        return Objects.equals(getName(), student.getName()) && getSex() == student.getSex() && Objects.equals(getAge(), student.getAge()) && Objects.equals(getYearOfStudy(), student.getYearOfStudy()) && Objects.equals(getAverageScore(), student.getAverageScore());
     }
 
     @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
+    public int hashCode() {
+        return Objects.hash(getName(), getSex(), getAge(), getYearOfStudy(), getAverageScore());
     }
 
     @Override
