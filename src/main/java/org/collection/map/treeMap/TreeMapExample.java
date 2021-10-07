@@ -1,10 +1,9 @@
-package org.collection.treeMap;
+package org.collection.map.treeMap;
 
 
 import org.collection.model.Sex;
 import org.collection.model.Student;
 
-import java.util.Comparator;
 import java.util.TreeMap;
 import java.util.logging.Logger;
 
