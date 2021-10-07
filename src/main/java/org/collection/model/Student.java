@@ -1,8 +1,10 @@
 package org.collection.model;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Objects;
 
-public class Student {
+public class Student implements Comparable<Student> {
     private String name;
     private Sex sex;
     private Integer age;
@@ -84,5 +86,10 @@ public class Student {
 
     public void setAverageScore(Double averageScore) {
         this.averageScore = averageScore;
+    }
+
+    @Override
+    public int compareTo(@NotNull Student o) {
+        return (int) (this.getAverageScore() - o.getAverageScore());
     }
 }
