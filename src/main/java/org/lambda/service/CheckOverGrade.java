@@ -1,4 +1,4 @@
-package org.lambda.model.service;
+package org.lambda.service;
 
 import org.lambda.model.Student;
 

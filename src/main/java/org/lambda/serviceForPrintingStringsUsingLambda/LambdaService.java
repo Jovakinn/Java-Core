@@ -1,4 +1,4 @@
-package org.lambda.model.serviceForPrintingStringsUsingLambda;
+package org.lambda.serviceForPrintingStringsUsingLambda;
 
 public class LambdaService {
     public static void def(Joinable joinable) {

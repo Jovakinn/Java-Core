@@ -1,4 +1,4 @@
-package org.lambda.model.serviceForPrintingStringsUsingLambda;
+package org.lambda.serviceForPrintingStringsUsingLambda;
 
 public interface Joinable {
     Integer function(String s);
