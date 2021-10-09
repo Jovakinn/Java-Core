@@ -1,4 +1,4 @@
-package org.lambda;
+package org.lambda.functional;
 
 import org.lambda.model.Sex;
 import org.lambda.model.Student;
