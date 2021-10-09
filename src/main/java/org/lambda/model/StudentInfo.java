@@ -3,10 +3,9 @@ package org.lambda.model;
 import org.lambda.model.service.CheckOverGrade;
 import org.lambda.model.service.StudentChecks;
 import java.util.ArrayList;
-import java.util.logging.Logger;
+import java.util.Comparator;
 
 public class StudentInfo {
-    private static final Logger logger = Logger.getLogger(StudentInfo.class.getName());
 
     void printStudentsOverGrade(ArrayList<Student> arrayList, StudentChecks studentChecks) {
 
@@ -31,13 +30,14 @@ public class StudentInfo {
         students.add(student5);
 
         StudentInfo info = new StudentInfo();
+        students.sort(Comparator.comparingInt(Student::getCourse));
+        System.out.println(students);
+
         info.printStudentsOverGrade(students, new CheckOverGrade());
-        info.printStudentsOverGrade(students, new StudentChecks() {
-            @Override
-            public Boolean check(Student student) {
-                return student.getAge() < 30;
-            }
-        });
+        info.printStudentsOverGrade(students, student -> student.getAge() < 30);
         info.printStudentsOverGrade(students, student -> student.getCourse() > 1 && student.getAge() > 17);
+
+        StudentChecks studentChecks = student -> student.getName().equals("Max");
+        info.printStudentsOverGrade(students, studentChecks);
     }
 }
