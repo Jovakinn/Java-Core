@@ -2,13 +2,11 @@ package org.lambda.functional;
 
 import org.lambda.model.Car;
 import org.lambda.model.Color;
-
 import java.util.ArrayList;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
-import java.util.logging.Logger;
 
-public class CarsRunner {
-    private static final Logger LOGGER = Logger.getLogger(CarsRunner.class.getName());
+public class CarsService {
 
     public static ArrayList<Car> createCars(Supplier<Car> carSupplier, Integer amountOfCars) {
         ArrayList<Car> arrayList = new ArrayList<>();
@@ -18,9 +16,12 @@ public class CarsRunner {
         return arrayList;
     }
 
-    public static void main(String[] args) {
-        ArrayList<Car> ourCarsList = createCars(() ->
-                new Car("Hyundai", Color.BLACK, 50000.0), 7);
-        LOGGER.info(String.valueOf(ourCarsList));
+    public static void changeColorOfCarsRed(ArrayList<Car> arrayList) {
+        Consumer<ArrayList<Car>> carConsumer = cars -> cars.forEach(car -> car.setColor(Color.RED));
+        carConsumer.accept(arrayList);
+    }
+
+    public static void changeCar(Car car, Consumer<Car> carConsumer){
+        carConsumer.accept(car);
     }
 }
