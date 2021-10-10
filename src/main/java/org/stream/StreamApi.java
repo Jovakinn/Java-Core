@@ -1,40 +1,23 @@
 package org.stream;
 
-import java.util.*;
-import java.util.stream.Collectors;
+
+import org.lambda.model.Sex;
+import org.stream.model.Person;
+import java.util.Arrays;
+import java.util.List;
 
 public class StreamApi {
     public static void main(String[] args) {
-        ArrayList<String> arrayList = new ArrayList<String>();
-        arrayList.add("adscs32324");
-        arrayList.add("ads123123");
-        arrayList.add("ads124c");
-        arrayList.add("adscw1341");
-        arrayList.add("adscs231231");
-        arrayList.add("adscsc");
+        List<Person> personArrayList = Arrays.asList(
+                new Person("Max", "Khodakov", 17, Sex.MALE, "Kyiv"),
+                new Person("Alex", "Cherechecha", 28, Sex.QUIR, "Lviv"),
+                new Person("Jake", "Jacksovich", 29, Sex.FEMALE, "Kharkiv")
+        );
 
-        arrayList.stream()
-                .map(String::length)
-                .forEach(System.out::println);
-
-        int[] array = {5, 3, 6, 9, 4};
-        Arrays.stream(array)
-                .map(element -> {
-                    if (element % 3 == 0)
-                        element = element / 3;
-                    return element;
-                })
-                .forEach(System.out::println);
-
-
-        Set<String> setOfStrings = new TreeSet<>();
-        setOfStrings.add("Hello java boy");
-        setOfStrings.add("How are you?");
-        setOfStrings.add("Hello partner");
-        setOfStrings.add("Hello");
-
-        Set<Integer> set = setOfStrings.stream()
-                .map(String::length).collect(Collectors.toSet());
-        System.out.println(set);
+        Person result = personArrayList.stream()
+                .filter(person -> "Jake".equals(person.getFirstName()) && 28 == person.getAge())
+                .findAny()
+                .orElse(null);
+        System.out.println(result);
     }
 }
