@@ -1,4 +1,4 @@
-package org.lambda.functional;
+package org.lambda.functional.CarService;
 
 import org.lambda.model.Car;
 import org.lambda.model.Color;

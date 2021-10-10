@@ -1,21 +1,14 @@
-package org.lambda.functional;
+package org.lambda.functional.StudentService;
 
 import org.lambda.model.Sex;
 import org.lambda.model.Student;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.function.Predicate;
-import java.util.logging.Logger;
+import static org.lambda.functional.StudentService.StudentService.avgOfStudent;
+import static org.lambda.functional.StudentService.StudentService.testStudents;
 
-public class StudentInfo {
-    private static final Logger LOGGER_ = Logger.getLogger(StudentInfo.class.getName());
-
-    public static void testStudents(ArrayList<Student> arrayList, Predicate<Student> predicate) {
-        for (Student student : arrayList) {
-            if (predicate.test(student))
-                LOGGER_.info(String.valueOf(student));
-        }
-    }
+public class StudentRunner {
 
     public static void main(String[] args) {
         Student student1 = new Student("Max", Sex.MALE, 17, 1, 7000.0);
@@ -42,5 +35,16 @@ public class StudentInfo {
         testStudents(students, predicateOfAge.and(predicateOfCourseAndAge));
         testStudents(students, predicateOfAge.or(predicateOfCourseAndAge));
         testStudents(students, predicateOfAge.negate());
+
+        Double result = avgOfStudent(students, student -> student.getCourse().doubleValue());
+        System.out.println(result);
+
+        students.stream()
+                .filter(student -> student.getSex().equals(Sex.QUIR))
+                .forEach(System.out::println);
+
+        Predicate<Student> predicate = student -> student.getSex().equals(Sex.QUIR);
+        students.removeIf(predicate);
+        System.out.println(students);
     }
 }
