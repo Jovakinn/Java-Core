@@ -15,7 +15,7 @@ public class StreamApi {
         );
 
         Person result = personArrayList.stream()
-                .filter(person -> "Jake".equals(person.getFirstName()) && 28 == person.getAge())
+                .filter(person -> person.getAge().equals(29) && person.getFirstName().equals("Jake"))
                 .findAny()
                 .orElse(null);
         System.out.println(result);
