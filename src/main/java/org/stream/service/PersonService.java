@@ -3,9 +3,10 @@ package org.stream.service;
 import org.lambda.model.Sex;
 import org.stream.model.Faculty;
 import org.stream.model.Person;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class PersonService {
     public static void main(String[] args) {
@@ -31,5 +32,30 @@ public class PersonService {
         facultyList.stream()
                 .flatMap(faculty -> faculty.getStudentsOfFaculty().stream())
                 .forEach(person -> System.out.println(person.getFirstName() + " " + person.getLastName()));
+
+        ////////////////////////////////////////////////////////////////////
+        System.out.println();
+        ////////////////////////////////////////////////////////////////////
+
+        Map<Integer, List<Person>> mapGrouped = facultyList.stream()
+                .flatMap(faculty -> faculty.getStudentsOfFaculty().stream())
+                .map( person -> {
+                    person.setFirstName(person.getFirstName().toUpperCase());
+                    person.setLastName(person.getLastName().toUpperCase());
+                    return person;
+                })
+                .collect(Collectors.groupingBy(Person::getAge));
+        System.out.println(mapGrouped);
+
+        Map<Boolean, List<Person>> mapPartitioned = facultyList.stream()
+                .flatMap(faculty -> faculty.getStudentsOfFaculty().stream())
+                .map( person -> {
+                    person.setFirstName(person.getFirstName().toLowerCase());
+                    person.setLastName(person.getLastName().toLowerCase());
+                    return person;
+                })
+                .collect(Collectors.partitioningBy(person -> person.getAge() > 25));
+        System.out.println(mapPartitioned);
+
     }
 }
