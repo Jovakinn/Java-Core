@@ -6,13 +6,11 @@ import org.stream.model.CarCompanies.Companies;
 import org.stream.model.Connection;
 import org.stream.model.Person;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.BiFunction;
 import java.util.function.BinaryOperator;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 public class StreamApi {
     private static final Logger LOG = Logger.getLogger(StreamApi.class.getName());
@@ -21,6 +19,7 @@ public class StreamApi {
         List<Person> personArrayList = Arrays.asList(
                 new Person("Max", "Khodakov", 17, Sex.MALE, "Kyiv"),
                 new Person("Alex", "Cherechecha", 28, Sex.QUIR, "Lviv"),
+                new Person("Kate", "Cherechecha", 30, Sex.QUIR, "Lviv"),
                 new Person("Jake", "Jacksovich", 29, Sex.FEMALE, "Kharkiv")
         );
 
@@ -36,11 +35,26 @@ public class StreamApi {
                 .orElse(null);
         LOG.info(String.valueOf(result));
 
+        personArrayList.stream()
+                .map(person -> {
+                    person.setFirstName(person.getFirstName().toUpperCase());
+                    person.setLastName(person.getLastName().toUpperCase());
+                    return person;
+                })
+                .filter(person -> person.getSex().equals(Sex.QUIR))
+                .sorted(Comparator.comparing(Person::getAge))
+                .forEach(System.out::println);
+
+        carList = carList.stream()
+                .sorted(Comparator.comparing(Car::getYear))
+                .collect(Collectors.toList());
+
         carList.stream()
                 .filter(car -> car.getYear() > 1999)
                 .map(Car::getNumber)
                 .filter(number -> number != null && !number.isEmpty())
                 .forEach(LOG::info);
+
 
         List<Integer> numbers = Arrays.asList(1, 2, 3);
         Integer sum = numbers.stream()
