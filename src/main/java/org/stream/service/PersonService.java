@@ -57,5 +57,11 @@ public class PersonService {
                 .collect(Collectors.partitioningBy(person -> person.getAge() > 25));
         System.out.println(mapPartitioned);
 
+        Double average = facultyList.stream()
+                .flatMap(faculty -> faculty.getStudentsOfFaculty().stream())
+                .mapToInt(Person::getAge)
+                .average()
+                .getAsDouble();
+        System.out.println(average);
     }
 }
