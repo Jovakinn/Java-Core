@@ -3,9 +3,15 @@ package org.stream;
 import org.lambda.model.Sex;
 import org.stream.model.Car;
 import org.stream.model.CarCompanies.Companies;
+import org.stream.model.Connection;
 import org.stream.model.Person;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.BiFunction;
+import java.util.function.BinaryOperator;
 import java.util.logging.Logger;
 
 public class StreamApi {
@@ -35,5 +41,39 @@ public class StreamApi {
                 .map(Car::getNumber)
                 .filter(number -> number != null && !number.isEmpty())
                 .forEach(LOG::info);
+
+        List<Integer> numbers = Arrays.asList(1, 2, 3);
+        Integer sum = numbers.stream()
+                .reduce(10, Integer::sum);
+        LOG.info(String.valueOf(sum));
+
+        List<String> stringList = Arrays.asList("Hello","Good", "Welcome");
+        String largestStringInList = stringList.stream()
+                .reduce("", (left, right) -> left.length() > right.length() ? left : right);
+        LOG.info(largestStringInList);
+
+        List<Connection> network = Arrays.asList(
+                new Connection("A", "B"),
+                new Connection("A", "C"),
+                new Connection("A", "D"),
+                new Connection("B", "C")
+        );
+
+        List<String> identity = new ArrayList<>();
+
+        BiFunction<List<String>, Connection, List<String>> accumulator = ((strings, connection) -> {
+           strings.add(connection.getTo());
+           return strings;
+        });
+
+        BinaryOperator<List<String>> combiner = ((strings, strings2) -> {
+            strings.addAll(strings2);
+            return strings;
+        });
+
+        List<String> listOfConnections = network.stream()
+                .filter(connection -> "A".equals(connection.getFrom()))
+                .reduce(identity, accumulator, combiner);
+        LOG.info(String.valueOf(listOfConnections));
     }
 }
