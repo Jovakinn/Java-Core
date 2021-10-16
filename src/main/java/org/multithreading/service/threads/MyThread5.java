@@ -1,4 +1,4 @@
-package org.multithreading.service;
+package org.multithreading.service.threads;
 
 public class MyThread5 extends Thread {
     @Override

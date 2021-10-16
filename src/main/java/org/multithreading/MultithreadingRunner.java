@@ -1,7 +1,7 @@
 package org.multithreading;
 
-import org.multithreading.service.MyThread3;
-import org.multithreading.service.MyThread4;
+import org.multithreading.service.threads.MyThread3;
+import org.multithreading.service.threads.MyThread4;
 
 public class MultithreadingRunner {
 
