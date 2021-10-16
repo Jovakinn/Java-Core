@@ -9,5 +9,13 @@ public class ThreadService {
             }
         }).start();
         new Thread(() -> System.out.println("hello!!!")).start();
+
+        MyThread5 myThread5 = new MyThread5();
+        System.out.println("Name of myThread5 = " + myThread5.getName() +
+                "\nPriority: " + myThread5.getPriority());
+
+        MyThread5 myThread6 = new MyThread5();
+        System.out.println("Name of myThread6 = " + myThread6.getName() +
+                "\nPriority: " + myThread6.getPriority());
     }
 }
