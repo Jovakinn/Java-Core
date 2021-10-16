@@ -1,14 +1,14 @@
 package org.multithreading;
 
-import org.multithreading.Threads.MyThread1;
-import org.multithreading.Threads.MyThread2;
+import org.multithreading.service.MyThread3;
+import org.multithreading.service.MyThread4;
 
 public class MultithreadingRunner {
 
     public static void main(String[] args) {
-        MyThread1 myThread1 = new MyThread1();
-        MyThread2 myThread2 = new MyThread2();
-        myThread1.start();
-        myThread2.start();
+        Thread thread1 = new Thread(new MyThread3());
+        Thread thread2 = new Thread(new MyThread4());
+        thread1.start();
+        thread2.start();
     }
 }
