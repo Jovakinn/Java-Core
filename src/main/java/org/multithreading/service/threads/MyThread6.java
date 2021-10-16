@@ -30,6 +30,7 @@ public class MyThread6 implements Runnable {
         System.out.println("Method run. Thread name = " +
                 Thread.currentThread().getName() + ". Thread priority = "
                 + Thread.currentThread().getPriority());
+        thread.join();
         outputThread();
     }
 }
