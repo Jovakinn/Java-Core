@@ -1,4 +1,4 @@
-package org.multithreading.service.threads;
+package org.multithreading.service.threadsToUse;
 
 public class MyThread3 implements Runnable {
     @Override

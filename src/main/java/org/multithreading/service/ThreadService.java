@@ -1,6 +1,6 @@
 package org.multithreading.service;
 
-import org.multithreading.service.threads.MyThread5;
+import org.multithreading.service.threadsToUse.MyThread5;
 
 public class ThreadService {
     public static void main(String[] args) {
