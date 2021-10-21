@@ -15,6 +15,18 @@ public class MyRunnableEx implements  Runnable {
         System.out.println(Counter.count + " ");
     }
 
+    public static void doPreparatoryJobs() {
+        System.out.println("Hooray!");
+    }
+
+    public static void doWork() {
+        doPreparatoryJobs();
+        synchronized(MyRunnableEx.class){
+            Counter.count++;
+            System.out.println(Counter.count);
+        }
+    }
+
     public static void main(String[] args) {
         MyRunnableEx myRunnableEx = new MyRunnableEx();
         Thread thread1 = new Thread(myRunnableEx);
