@@ -16,17 +16,20 @@ public class Employee extends Thread {
 
     @Override
     public void run() {
-        try {
-            System.out.println(firstName + " " + lastName + " is waiting...");
-            lock.lock();
-            System.out.println(firstName + " " + lastName + " is using ATM.");
-            Thread.sleep(2000);
-            System.out.println(firstName + " " + lastName + " has done all errands!");
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } finally {
-            lock.unlock();
+        if (lock.tryLock()) {
+            try {
+                System.out.println(firstName + " " + lastName + " is waiting...");
+                lock.lock();
+                System.out.println(firstName + " " + lastName + " is using ATM.");
+                Thread.sleep(2000);
+                System.out.println(firstName + " " + lastName + " has done all errands!");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } finally {
+                lock.unlock();
+            }
+        } else {
+            System.out.println(firstName + " " + lastName + " can't wait in a queue.");
         }
-
     }
 }
