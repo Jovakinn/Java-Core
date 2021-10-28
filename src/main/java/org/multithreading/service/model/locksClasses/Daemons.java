@@ -5,6 +5,7 @@ import org.multithreading.service.model.locksClasses.model.Converter;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.logging.Logger;
 
 public class Daemons implements Converter<String, Integer> {
@@ -38,10 +39,11 @@ public class Daemons implements Converter<String, Integer> {
 
     @Override
     public Integer convert(String from) {
+        AtomicReference<Integer> result = new AtomicReference<>();
         ExecutorService executorService = Executors.newSingleThreadExecutor();
         executorService.submit(() -> {
             Converter<String, Integer> converter = String::length;
-            return converter.convert(Thread.currentThread().getName());
+            result.set(converter.convert(Thread.currentThread().getName()));
         });
         try {
             System.out.println("attempt to shutdown executor");
@@ -58,6 +60,6 @@ public class Daemons implements Converter<String, Integer> {
             executorService.shutdownNow();
             System.out.println("shutdown finished");
         }
-        return 0;
+        return result.get();
     }
 }
