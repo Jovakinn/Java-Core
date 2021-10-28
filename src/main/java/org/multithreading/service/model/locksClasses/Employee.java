@@ -1,5 +1,6 @@
 package org.multithreading.service.model.locksClasses;
 
+import java.util.Objects;
 import java.util.concurrent.locks.Lock;
 
 public class Employee extends Thread {
@@ -12,6 +13,52 @@ public class Employee extends Thread {
         this.lastName = lastName;
         this.lock = lock;
         this.start();
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", lock=" + lock +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Employee)) return false;
+        Employee employee = (Employee) o;
+        return Objects.equals(getFirstName(), employee.getFirstName()) && Objects.equals(getLastName(), employee.getLastName()) && Objects.equals(getLock(), employee.getLock());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getFirstName(), getLastName(), getLock());
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public Lock getLock() {
+        return lock;
+    }
+
+    public void setLock(Lock lock) {
+        this.lock = lock;
     }
 
     @Override
