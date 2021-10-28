@@ -4,8 +4,13 @@ import org.multithreading.service.model.locksClasses.model.Converter;
 
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicReference;
-import java.util.function.Supplier;
 import java.util.logging.Logger;
+
+/**
+ * @author maksymkhodakov
+ * @param <T>
+ * @apiNote This app shows threads controlling using modern Java
+ */
 
 public class Daemons<T> implements Converter<String, Integer> {
     private static final Logger logger = Logger.getLogger(Daemons.class.getName());
