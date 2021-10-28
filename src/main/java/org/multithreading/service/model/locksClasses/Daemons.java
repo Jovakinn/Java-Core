@@ -2,13 +2,12 @@ package org.multithreading.service.model.locksClasses;
 
 import org.multithreading.service.model.locksClasses.model.Converter;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.function.Supplier;
 import java.util.logging.Logger;
 
-public class Daemons implements Converter<String, Integer> {
+public class Daemons<T> implements Converter<String, Integer> {
     private static final Logger logger = Logger.getLogger(Daemons.class.getName());
 
     public static void main(String[] args) {
@@ -31,10 +30,17 @@ public class Daemons implements Converter<String, Integer> {
         Thread thread2 = new Thread(coolTask);
         thread2.start();
 
-
-        Daemons daemons = new Daemons();
+        Daemons<String> daemons = new Daemons<>();
         String testString = Thread.currentThread().toString();
         logger.info(String.valueOf(daemons.convert(testString)));
+        logger.info(String.valueOf(daemons.callable("Thread is good for Java", 5)));
+    }
+
+    Callable<T> callable (T result, long sleepSeconds) {
+        return () -> {
+          TimeUnit.SECONDS.sleep(sleepSeconds);
+          return result;
+        };
     }
 
     @Override
