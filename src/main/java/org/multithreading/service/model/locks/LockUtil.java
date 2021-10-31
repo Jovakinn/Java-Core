@@ -29,9 +29,7 @@ public class LockUtil {
     public static void completeTask(AtomicLong initialAtomicLongValue) {
         Runnable task = () -> initialAtomicLongValue.set(new Date().getTime());
         Function<Long, Date> dateConverter = Date::new;
-        Consumer<Date> printer = date -> {
-            logger.info(String.valueOf(date));
-        };
+        Consumer<Date> printer = date -> logger.info(String.valueOf(date));
         CompletableFuture.runAsync(task)
                 .thenApply((v) -> initialAtomicLongValue.get())
                 .thenApply(dateConverter)
