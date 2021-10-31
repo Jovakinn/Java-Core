@@ -1,5 +1,7 @@
 package org.multithreading.service.model.ThreadPools;
 
+import org.multithreading.service.model.ThreadPools.implementations.RunnableImpl;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.logging.Logger;
