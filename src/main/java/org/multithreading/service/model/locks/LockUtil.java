@@ -1,7 +1,12 @@
 package org.multithreading.service.model.locks;
 
+import java.util.Date;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicLong;
+import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.logging.Logger;
 
 public class LockUtil {
@@ -21,11 +26,28 @@ public class LockUtil {
         }
     }
 
+    public static void completeTask(AtomicLong initialAtomicLongValue) {
+        Runnable task = () -> initialAtomicLongValue.set(new Date().getTime());
+        Function<Long, Date> dateConverter = Date::new;
+        Consumer<Date> printer = date -> {
+            logger.info(String.valueOf(date));
+        };
+        CompletableFuture.runAsync(task)
+                .thenApply((v) -> initialAtomicLongValue.get())
+                .thenApply(dateConverter)
+                .thenAccept(printer);
+    }
+
     public static void sleep(Long seconds) {
         try {
             TimeUnit.SECONDS.sleep(seconds);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void main(String[] args) {
+        AtomicLong longValue = new AtomicLong(1);
+        completeTask(longValue);
     }
 }
