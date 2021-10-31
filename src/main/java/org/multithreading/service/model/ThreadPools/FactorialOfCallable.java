@@ -1,5 +1,7 @@
 package org.multithreading.service.model.ThreadPools;
 
+import org.multithreading.service.model.locks.LockUtil;
+
 import java.util.Objects;
 import java.util.concurrent.Callable;
 
@@ -49,6 +51,7 @@ public class FactorialOfCallable implements Callable<Integer> {
         int result = 1;
         for (int i = 1; i <= f; i++) {
             result *= i;
+            LockUtil.sleep(1L);
         }
         return result;
     }

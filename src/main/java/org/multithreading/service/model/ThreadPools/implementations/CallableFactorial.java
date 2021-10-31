@@ -19,7 +19,9 @@ public class CallableFactorial {
 
         Future<Integer> future = executor.submit(factorialOfCallable);
         try {
+            log.info("We want to get result");
             factorialResult = future.get();
+            log.info("We got a result");
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
