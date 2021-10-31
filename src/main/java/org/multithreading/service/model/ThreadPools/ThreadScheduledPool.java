@@ -2,9 +2,6 @@ package org.multithreading.service.model.ThreadPools;
 
 import org.multithreading.service.model.ThreadPools.implementations.RunnableScheduledImpl;
 import org.multithreading.service.model.locks.LockUtil;
-
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
