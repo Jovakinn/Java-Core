@@ -21,7 +21,11 @@ public class LockUtil {
         }
     }
 
-    public static void sleep(Integer seconds) throws InterruptedException {
-        TimeUnit.SECONDS.sleep(seconds);
+    public static void sleep(Long seconds) {
+        try {
+            TimeUnit.SECONDS.sleep(seconds);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

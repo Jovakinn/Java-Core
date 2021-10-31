@@ -1,5 +1,6 @@
 package org.multithreading.service.model.locksClasses;
 
+import org.multithreading.service.model.locks.LockUtil;
 import org.multithreading.service.model.locksClasses.model.Converter;
 
 import java.util.concurrent.*;
@@ -25,11 +26,7 @@ public class Daemons<T> implements Converter<String, Integer> {
         Runnable coolTask = () -> {
             String name = Thread.currentThread().getName();
             System.out.println("Foo " + name);
-            try {
-                TimeUnit.SECONDS.sleep(1);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            LockUtil.sleep(1L);
             System.out.println("Boo " + name);
         };
         Thread thread2 = new Thread(coolTask);
@@ -43,7 +40,7 @@ public class Daemons<T> implements Converter<String, Integer> {
 
     Callable<T> callable (T result, long sleepSeconds) {
         return () -> {
-          TimeUnit.SECONDS.sleep(sleepSeconds);
+            LockUtil.sleep(sleepSeconds);
           return result;
         };
     }
@@ -56,21 +53,7 @@ public class Daemons<T> implements Converter<String, Integer> {
             Converter<String, Integer> converter = String::length;
             result.set(converter.convert(Thread.currentThread().getName()));
         });
-        try {
-            System.out.println("attempt to shutdown executor");
-            executorService.shutdown();
-            executorService.awaitTermination(5, TimeUnit.SECONDS);
-        }
-        catch (InterruptedException e) {
-            System.err.println("tasks interrupted");
-        }
-        finally {
-            if (!executorService.isTerminated()) {
-                System.err.println("cancel non-finished tasks");
-            }
-            executorService.shutdownNow();
-            System.out.println("shutdown finished");
-        }
+        LockUtil.stopExecutor(executorService);
         return result.get();
     }
 }
