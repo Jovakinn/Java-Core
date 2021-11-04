@@ -8,12 +8,14 @@ public class Employees implements Serializable {
     private String lastName;
     private Integer age;
     private Double salary;
+    private Car car;
 
-    public Employees(String firstName, String lastName, Integer age, Double salary) {
+    public Employees(String firstName, String lastName, Integer age, Double salary, Car car) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
         this.salary = salary;
+        this.car = car;
     }
 
     public Employees() {
@@ -39,6 +41,7 @@ public class Employees implements Serializable {
                 ", lastName='" + lastName + '\'' +
                 ", age=" + age +
                 ", salary=" + salary +
+                ", car=" + car +
                 '}';
     }
 

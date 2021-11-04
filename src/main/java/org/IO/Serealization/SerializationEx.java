@@ -1,5 +1,6 @@
 package org.IO.Serealization;
 
+import org.IO.Serealization.models.Car;
 import org.IO.Serealization.models.Employees;
 
 import java.io.*;
@@ -15,7 +16,9 @@ public class SerializationEx {
         employees.add("Max");
         employees.add("Jack");
         employees.add("Kevin");
-        Employees employee = new Employees("Wade", "Jackson", 27, 12000.0);
+        Car car = new Car("Ford", "Gray");
+        Employees employee = new Employees("Wade", "Jackson", 27,
+                12000.0, car);
         try (ObjectOutputStream objectOutputStream =
                      new ObjectOutputStream(new FileOutputStream("employees.bin"))) {
             objectOutputStream.writeObject(employee);
