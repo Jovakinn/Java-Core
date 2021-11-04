@@ -1,5 +1,7 @@
 package org.IO.Serealization;
 
+import org.IO.Serealization.models.Employees;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,8 +15,10 @@ public class SerializationEx {
         employees.add("Max");
         employees.add("Jack");
         employees.add("Kevin");
+        Employees employee = new Employees("Wade", "Jackson", 27, 12000.0);
         try (ObjectOutputStream objectOutputStream =
                      new ObjectOutputStream(new FileOutputStream("employees.bin"))) {
+            objectOutputStream.writeObject(employee);
             objectOutputStream.writeObject(employees);
             log.info("Done!");
         } catch (IOException e) {
