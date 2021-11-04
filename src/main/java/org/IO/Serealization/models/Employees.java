@@ -4,10 +4,12 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class Employees implements Serializable {
+    static final long serialVersionUID = 1;
+
     private String firstName;
     private String lastName;
     private Integer age;
-    private Double salary;
+    transient private Double salary;
     private Car car;
 
     public Employees(String firstName, String lastName, Integer age, Double salary, Car car) {

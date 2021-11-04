@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class Car implements Serializable {
+    static final long serialVersionUID = 1;
     private String model;
     private String color;
 
