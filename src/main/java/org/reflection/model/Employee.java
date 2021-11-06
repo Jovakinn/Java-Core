@@ -1,9 +1,9 @@
 package org.reflection.model;
 
 import org.reflection.Departments.Department;
-
 import java.util.Objects;
 
+@CompanyRelated(CompanyName = "EPAM", yearOfCompanyCreation = 1993)
 public class Employee {
     private Integer id;
     private String name;
@@ -47,9 +47,20 @@ public class Employee {
         this.salary = salary;
     }
 
+    @CompanyRelated
     private void changeDepartment(Department newDepartment) {
         department = newDepartment;
         System.out.println("New department is: " + department);
+    }
+
+    @CompanyRelated
+    private void increaseSalary(Employee employee, Double sumToIncrease) {
+        employee.setSalary(employee.getSalary() + sumToIncrease);
+    }
+
+    @CompanyRelated
+    private void decreaseSalary(Employee employee, Double sumToDecrease) {
+        employee.setSalary(employee.getSalary() - sumToDecrease);
     }
 
     @Override

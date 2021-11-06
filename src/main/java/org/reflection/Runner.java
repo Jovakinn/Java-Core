@@ -5,17 +5,19 @@ import org.reflection.model.Calculator;
 import org.reflection.model.Employee;
 
 import java.io.*;
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Objects;
 
 public class Runner {
     public static void main(String[] args) throws ClassNotFoundException, NoSuchFieldException,
             InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
         Class employeeClass = Employee.class;
-        employeeClass.getDeclaredField("id");
+        Annotation annotation = employeeClass.getAnnotation(Employee.class);
+        Employee employee = (Employee) annotation;
+        System.out.println("Annotation info from Employee class: " + employee.toString());
 
         Field someField = employeeClass.getDeclaredField("id");
         System.out.println("Type of id = " + someField.getType());
